@@ -9,5 +9,5 @@ func (JSONMarshaler) Marshal(v interface{}) ([]byte, error) {
 }
 
 func (JSONMarshaler) Unmarshal(data []byte, v interface{}) error {
-	return json.Unmarshal(data, &v)
+	return json.Unmarshal(data, v)
 }

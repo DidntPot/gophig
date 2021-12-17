@@ -14,7 +14,7 @@ func GetConf(name, extension string, v interface{}) error {
 	if err != nil {
 		return err
 	}
-	return marshaler.Unmarshal(data, &v)
+	return marshaler.Unmarshal(data, v)
 }
 
 func SetConf(name, extension string, v interface{}, perm fs.FileMode) error {

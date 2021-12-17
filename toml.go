@@ -11,5 +11,5 @@ func (TOMLMarshaler) Marshal(v interface{}) ([]byte, error) {
 }
 
 func (TOMLMarshaler) Unmarshal(data []byte, v interface{}) error {
-	return toml.Unmarshal(data, &v)
+	return toml.Unmarshal(data, v)
 }
