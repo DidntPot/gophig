@@ -18,9 +18,17 @@ func NewGophig(name, extension string, perm fs.FileMode) *Gophig {
 }
 
 func (gophig *Gophig) SetConf(v interface{}) error {
-	return SetConf(gophig.Name, gophig.Extension, v, gophig.Perm)
+	marshaler, err := extMarshaler(gophig.Extension)
+	if err != nil {
+		return err
+	}
+	return SetConfComplex(gophig.Name, marshaler, v, gophig.Perm)
 }
 
 func (gophig *Gophig) GetConf(v interface{}) error {
-	return GetConf(gophig.Name, gophig.Extension, v)
+	marshaler, err := extMarshaler(gophig.Extension)
+	if err != nil {
+		return err
+	}
+	return GetConfComplex(gophig.Name, marshaler, v)
 }

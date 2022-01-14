@@ -5,26 +5,18 @@ import (
 	"os"
 )
 
-func GetConf(name, extension string, v interface{}) error {
-	data, err := os.ReadFile(name + "." + extension)
-	if err != nil {
-		return err
-	}
-	marshaler, err := extMarshaler(extension)
+func GetConfComplex(name string, marshaler Marshaler, v interface{}) error {
+	data, err := os.ReadFile(name)
 	if err != nil {
 		return err
 	}
 	return marshaler.Unmarshal(data, v)
 }
 
-func SetConf(name, extension string, v interface{}, perm fs.FileMode) error {
-	marshaler, err := extMarshaler(extension)
-	if err != nil {
-		return err
-	}
+func SetConfComplex(name string, marshaler Marshaler, v interface{}, perm fs.FileMode) error {
 	data, err := marshaler.Marshal(v)
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(name+"."+extension, data, perm)
+	return os.WriteFile(name, data, perm)
 }
