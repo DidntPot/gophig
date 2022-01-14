@@ -22,7 +22,7 @@ func (gophig *Gophig) SetConf(v interface{}) error {
 	if err != nil {
 		return err
 	}
-	return SetConfComplex(gophig.Name, marshaler, v, gophig.Perm)
+	return SetConfComplex(gophig.Name+"."+gophig.Extension, marshaler, v, gophig.Perm)
 }
 
 func (gophig *Gophig) GetConf(v interface{}) error {
@@ -30,5 +30,5 @@ func (gophig *Gophig) GetConf(v interface{}) error {
 	if err != nil {
 		return err
 	}
-	return GetConfComplex(gophig.Name, marshaler, v)
+	return GetConfComplex(gophig.Name+"."+gophig.Extension, marshaler, v)
 }
